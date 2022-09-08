@@ -1,0 +1,7 @@
+{
+  "name": "lipsonne",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
