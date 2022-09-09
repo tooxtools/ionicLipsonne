@@ -1,20 +1,38 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title> Lypson Fashion</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title style="text-align: center;"  size="large">Lypson Fashion</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
+  <p>Trouver des models plus Stylées que jamais</p><br>
+  <ul *ngFor="let article of Articles">
+    <li click()="showData(article)">{{article.nom}} - {{article.prix}} - {{article.details}}</li>
+  </ul>
+  <ion-button (click)="showDetails()">Details Page</ion-button><br><br>
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <div id="container">
     <strong>Ready to create an app?</strong>
     <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
   </div>
-</ion-content>
+</ion-content> -->
+
+<ion-footer id="pied">
+  <p class="monFooter">Je   devrais etre le fameux footer</p>
+</ion-footer>
