@@ -13,7 +13,7 @@
 
   <p>Trouver des models plus Stylées que jamais</p><br>
   <ul *ngFor="let article of Articles">
-    <li click()="showData(article)">{{article.nom}} - {{article.prix}} - {{article.details}}</li>
+    <li (click)="showDetails(Articles)"> {{article.nom}} - {{article.prix}} - {{article.details}}</li>
   </ul>
   <ion-button (click)="showDetails()">Details Page</ion-button><br><br>
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-details',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./details.page.scss'],
 })
 export class DetailsPage implements OnInit {
+  productdetails : any;
 
-  constructor() { }
+  constructor(public navCtrl: NavController, public navParams: NavParams) { 
+    this.productdetails = this.navParams.get('data');
+
+  }
 
   ngOnInit() {
   }
 
 }
+  

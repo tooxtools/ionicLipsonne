@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Data, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { DetailsPage } from '../details/details.page';
 
@@ -8,9 +9,9 @@ import { DetailsPage } from '../details/details.page';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-Articles : any;
+Articles : any[];
 
-  constructor (public navCtrl: NavController ){ 
+  constructor (public navCtrl: NavController, public router:Router ){ 
     this.Articles=[
       {nom: 'Télévision', prix : 145, details: "De la Senegalaise"},
       {nom: 'Ordinateur', prix : 389,  details: "De la Senegalaise"},
@@ -20,12 +21,21 @@ Articles : any;
       {nom: 'Ampoule', prix : 357,  details: "ma propre cretivité"}
     ]
   } 
-  showDetails( data : any): void {
-      this.navCtrl.navigateForward('/details, {data : data}');
+  showDetails(): void {
+      this.navCtrl.navigateForward('/details');
+      // this.router.navigate(['/details'])
+      // console.log('daccord')
     }
-   
-  showData( data : any) : void{
-    console.log('data is', data);
-  }
+
+    showData(data : any) :void{
+      console.log('data is', data)
+    }
+
+
 
   }
+
+function showDetail() {
+  throw new Error('Function not implemented.');
+}
+
