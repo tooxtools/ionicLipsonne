@@ -1,0 +1,72 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <!-- <ion-title>loginscreem</ion-title> -->
+
+  </ion-toolbar>
+
+  <ion-back-button slot="start" defaulthref="login" text="">
+  </ion-back-button>
+</ion-header>
+
+<ion-content>
+  <ion-card class="ion-no-margin">
+    <ion-img src="../../assets/images/header1.png"></ion-img>
+  </ion-card>
+  <ion-card-content>
+    <div class="warpform">
+      <ion-item>
+        <ion-icon name="mail-outline"></ion-icon>
+        <ion-input type="text" name="email" [(ngModle)]="email" placeholder="Email" required>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        <ion-input type="password" name="password" placeholder="****************" [(ngModle)]="email" required>
+        </ion-input>
+      </ion-item>
+
+    </div>
+    <div class="password-forgot">
+      <ion-button fill="clear" class="ion-no-padding">ForgotPassword?</ion-button>
+
+    </div>
+
+    <div class="sign-btn-wrap">
+      <ion-button shape="round" fill="solid">Login</ion-button>
+    </div>
+
+    <div style="text-align:center; margin-top: 30px;">
+      <span class="text-tag">
+        Login Via
+      </span>
+    </div>
+    <div class="social-btns">
+      <div class="signin-btns" style="display: inline-flex;">
+        <ion-button fill="clear" shape="round" class="facebookbtn ">
+          <ion-img src="../../assets/images/facebook.png"></ion-img>
+        </ion-button>
+
+        <ion-button fill="clear" shape="round" class="google ">
+          <ion-img src="../../assets/images/google.png"></ion-img>
+        </ion-button>
+
+        <ion-button fill="clear" shape="round" class="apple ">
+          <ion-img src="../../assets/images/apple.png"></ion-img>
+        </ion-button>
+
+      </div>
+    </div>
+
+
+  </ion-card-content>
+  <ion-card-footer>
+    <div class="ion-card-footer">
+      <span>Don't have an account?</span>
+      <ion-button fill="clear"  style="margin-bottom: 15px; padding-left: 2px;" href="/singup">Sign Up</ion-button>
+    </div>
+  </ion-card-footer>
+
+
+
+
+</ion-content>

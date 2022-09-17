@@ -8,8 +8,8 @@ import { DetailsPage } from '../details/details.page';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
-Articles : any[];
+export class HomePage { 
+ Articles : any[];
 
   constructor (public navCtrl: NavController, public router:Router ){ 
     this.Articles=[
@@ -21,7 +21,7 @@ Articles : any[];
       {nom: 'Ampoule', prix : 357,  details: "ma propre cretivité"}
     ]
   } 
-  showDetails(): void {
+  showDetails(data : any): void {
       this.navCtrl.navigateForward('/details');
       // this.router.navigate(['/details'])
       // console.log('daccord')
@@ -30,12 +30,4 @@ Articles : any[];
     showData(data : any) :void{
       console.log('data is', data)
     }
-
-
-
-  }
-
-function showDetail() {
-  throw new Error('Function not implemented.');
 }
-
