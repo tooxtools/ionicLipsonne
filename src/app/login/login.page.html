@@ -24,14 +24,14 @@
         </ion-button> 
         <ion-button class="sign-btn-wrap" shape="round" fill="outline" color="dark">
           Sign Up</ion-button>
-      </div><br>
+      </div><br><br>
       <div>
         <span style="margin-left:65px ;">
           Or Via Social Media
         </span>
         <ion-button size="small" href="/loginscreem"> 😐</ion-button>
       </div>
-      <div class="social-btns" >
+      <div class="social-btns" ><br>
         <div class="Signin-btns" style="display: inline-flex; ">
           <ion-button fill="clear" shape="round" class="facebookbtn ">
             <ion-img src="../../assets/images/facebook.png"></ion-img>
@@ -41,7 +41,7 @@
             <ion-img src="../../assets/images/google.png"></ion-img>
           </ion-button>
 
-          <ion-button fill="clear" shape="round" class="apple ">
+          <ion-button (click)="googleSignup()" fill="clear" shape="round" class="apple ">
             <ion-img src="../../assets/images/apple.png"></ion-img>
           </ion-button>
 

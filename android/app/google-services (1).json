@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "999112778830",
+    "firebase_url": "https://ioniclipson-default-rtdb.firebaseio.com",
+    "project_id": "ioniclipson",
+    "storage_bucket": "ioniclipson.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999112778830:android:863567f154d86fb56f0f1f",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "999112778830-5fddd3opa8nqi3ehq3gfacjfm2c6su26.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.starter",
+            "certificate_hash": "a2809bc3ee3c68d65ab13209654ced831c5e9a06"
+          }
+        },
+        {
+          "client_id": "999112778830-7df6sibj1ol5tpl24flpjjpe0pkjetts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1CM4o9y7PeoqgPs9wAHsJayFSG1HoHcM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "999112778830-7df6sibj1ol5tpl24flpjjpe0pkjetts.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
