@@ -1,16 +1,11 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar>
-    <!-- <ion-title>loginscreem</ion-title> -->
 
-  </ion-toolbar>
-
-  <ion-back-button slot="start" defaulthref="login" text="">
-  </ion-back-button>
 </ion-header>
 
 <ion-content>
   <ion-card class="ion-no-margin">
-    <ion-img src="../../assets/images/header1.png"></ion-img>
+    <ion-img src="../../assets/images/header1.png"> </ion-img>  <ion-back-button slot="start">
+  </ion-back-button>
   </ion-card>
   <ion-card-content>
     <div class="warpform">
@@ -21,18 +16,18 @@
       </ion-item>
       <ion-item>
         <ion-icon name="lock-closed-outline"></ion-icon>
-        <ion-input type="password" name="password" placeholder="****************" [(ngModle)]="email" required>
+        <ion-input type="password" name="password" placeholder="**************" [(ngModle)]="email" required>
         </ion-input>
       </ion-item>
 
     </div>
     <div class="password-forgot">
-      <ion-button fill="clear" class="ion-no-padding">ForgotPassword?</ion-button>
+      <ion-button fill="clear" class="ion-no-padding" [routerLink]="['/password-reset']">ForgotPassword?</ion-button>
 
     </div>
 
     <div class="sign-btn-wrap">
-      <ion-button shape="round" fill="solid">Login</ion-button>
+      <ion-button (click)="logIn(email, password)" shape="round" fill="solid">Login</ion-button>
     </div>
 
     <div style="text-align:center; margin-top: 30px;">
@@ -46,7 +41,7 @@
           <ion-img src="../../assets/images/facebook.png"></ion-img>
         </ion-button>
 
-        <ion-button fill="clear" shape="round" class="google ">
+        <ion-button (click)="authService.GoogleAuth()" fill="clear" shape="round" class="google ">
           <ion-img src="../../assets/images/google.png"></ion-img>
         </ion-button>
 
@@ -56,15 +51,14 @@
 
       </div>
     </div>
-
-
   </ion-card-content>
-  <ion-card-footer>
+
+  <ion-card>
     <div class="ion-card-footer">
       <span>Don't have an account?</span>
       <ion-button fill="clear"  style="margin-bottom: 15px; padding-left: 2px;" href="/singup">Sign Up</ion-button>
     </div>
-  </ion-card-footer>
+  </ion-card>
 
 
 

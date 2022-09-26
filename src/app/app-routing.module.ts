@@ -25,10 +25,6 @@ const routes: Routes = [
     loadChildren: () => import('./singup/singup.module').then( m => m.SingupPageModule)
   },
   {
-    path: 'forgotpassword',
-    loadChildren: () => import('./forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
-  },
-  {
     path: 'loginscreem',
     loadChildren: () => import('./loginscreem/loginscreem.module').then( m => m.LoginscreemPageModule)
   },
@@ -36,6 +32,20 @@ const routes: Routes = [
     path: 'profiles',
     loadChildren: () => import('./profiles/profiles.module').then( m => m.ProfilesPageModule)
   },
+  {
+    path: 'verify-email',
+    loadChildren: () => import('./verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'password-reset',
+    loadChildren: () => import('./password-reset/password-reset.module').then( m => m.PasswordResetPageModule)
+  },
+
+
 ];
 
 @NgModule({

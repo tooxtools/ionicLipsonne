@@ -15,38 +15,38 @@
         Sign Up
       </ion-card-title>
       <ion-card-subtitle>
-        Create Your account by filling up the form
+        Create Your account at Lipsone Fashion
       </ion-card-subtitle>
 
     </ion-card-header>
     <ion-card-content>
       <ion-item>
         <ion-input name="names" type="text" placeholder="FullName">
-          <ion-icon name="person-outline"> </ion-icon>
+          <ion-icon name="person-outline" #FullName required> </ion-icon>
         </ion-input>
       </ion-item>
 
       <ion-item>
         <ion-input name="names" type="number" placeholder="phone No.">
-          <ion-icon name="call-outline"> </ion-icon>
+          <ion-icon name="call-outline" #Tel required> </ion-icon>
         </ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-input name="emai" type="text" placeholder="Email">
-          <ion-icon name="mail-outline"> </ion-icon>
+        <ion-input name="email" type="text" placeholder="Email">
+          <ion-icon name="mail-outline" #email required> </ion-icon>
         </ion-input>
       </ion-item>
 
       <ion-item>
         <ion-input name="password" type="password" placeholder="**********">
-          <ion-icon name="lock-closed-outline"> </ion-icon>
+          <ion-icon name="lock-closed-outline" #password required> </ion-icon>
         </ion-input>
       </ion-item>
 
       
     <div class="sign-btn-wrap">
-      <ion-button shape="round" fill="solid">Login</ion-button>
+      <ion-button shape="round" (click)="signUp(email, password)" fill="solid">Login</ion-button>
     </div>
 
     <div style="text-align:center; margin-top: 30px;">
@@ -60,7 +60,7 @@
           <ion-img src="../../assets/images/facebook.png"></ion-img>
         </ion-button>
 
-        <ion-button fill="clear" shape="round" class="google ">
+        <ion-button fill="clear" shape="round" class="google " (click)="authService.GoogleAuth()">
           <ion-img src="../../assets/images/google.png"></ion-img>
         </ion-button>
 
