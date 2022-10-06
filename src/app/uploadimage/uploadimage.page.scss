@@ -1,0 +1,22 @@
+ion-content{
+    --ion-background-color:#7e8e96; 
+}
+
+.containerWrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+}
+
+ion-button{
+    --background:#439af1;
+}
+
+.btn{
+      background-color:#dee4f1;
+      text-align: center;
+      color: #3b63e5;
+      margin-top: 5px;
+}

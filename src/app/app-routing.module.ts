@@ -47,6 +47,10 @@ const routes: Routes = [
     path: 'mesure',
     loadChildren: () => import('./mesure/mesure.module').then( m => m.MesurePageModule)
   },
+  {
+    path: 'uploadimage',
+    loadChildren: () => import('./uploadimage/uploadimage.module').then( m => m.UploadimagePageModule)
+  },
 
 
 
