@@ -1,0 +1,41 @@
+<ion-header >
+  <ion-toolbar class="ion-toolbar">
+    <ion-title style="color: white;">my Measure</ion-title>
+    <ion-button href="/profile" size="small" slot="end"style="border-radius: 40px;" >
+      <ion-icon  name="information-circle" size="large" ></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-item>
+      <ion-checkbox slot="start"></ion-checkbox>
+      <ion-label name="homme">Femme</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox slot="start"></ion-checkbox>
+      <ion-label name="femme">Homme</ion-label>
+    </ion-item>
+   
+
+  </ion-item><br>
+<ion-item>
+  <ion-label>Today's</ion-label>
+  <ion-input
+    value="{{ date | date: 'dd.MM.yyyy' }}"
+    id="date"
+    class="ion-text-end"
+  ></ion-input>
+  <ion-popover trigger="date" size="cover" class="ion-text-center" >
+    <ng-template>
+      <ion-datetime
+        presentation="date"
+        [(ngModel)]="date"
+        locale="sl-SI"
+      ></ion-datetime>
+    </ng-template>
+  </ion-popover>
+</ion-item>
+
+</ion-content>

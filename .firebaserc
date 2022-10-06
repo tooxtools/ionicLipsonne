@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "ioniclipson"
+  },
+  "targets": {
+    "ioniclipson": {
+      "hosting": {
+        "app": [
+          "ioniclipson"
+        ]
+      }
+    }
   }
 }

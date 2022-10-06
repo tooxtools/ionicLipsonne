@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 
+// import { Platform } from '@ionic/angular';
+// import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+// import { StatusBar } from '@ionic-native/status-bar/ngx';
+// import { LottieSplashScreen } from '@ionic-native/lottie-splash-screen/ngx';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -8,14 +13,22 @@ import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 })
 export class AppComponent {
 
-  constructor() {
+  // constructor(
+  //   private platform: Platform,
+  //   private lottieSPlashScreen: LottieSplashScreen,
+  //   private statusBar: StatusBar
+  // ) {
   //   this.initializeApp();
   // }
-  
+
   // initializeApp() {
-  //   this.platform.request().then(() => {
-  //     GoogleAuth.initialize()
-  //   })
-   }
-  
+  //   this.lottieSPlashScreen.show();
+  //   this.platform.ready().then(() => {
+  //     this.statusBar.styleDefault();
+  //     setTimeout(()=>{
+  //       this.lottieSPlashScreen.hide();
+  //     },4000);
+      
+  //   });
+  // }
 }

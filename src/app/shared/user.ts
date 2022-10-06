@@ -4,4 +4,9 @@ export interface User {
     displayName: string;
     photoURL: string;
     emailVerified: boolean;
- }
+    phoneNumber:number; 
+    country:string;
+    city: string;
+    sexe: boolean;
+
+}

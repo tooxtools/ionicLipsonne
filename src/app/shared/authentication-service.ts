@@ -1,5 +1,9 @@
 import { Injectable, NgZone } from '@angular/core';
 import * as auth from 'firebase/auth';
+//
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import * as firebase from 'firebase/app';
+//
 import { User } from './user';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -7,11 +11,23 @@ import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { App } from '@capacitor/app';
+import { initializeApp } from 'firebase/app';
+
+
+
+
+//import * as firebase from 'firebase/compat';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
+  [x: string]: any;    
+  private user : User;
   userData: any;
+  username: string;
+  uid: string;
   constructor(
     public afStore: AngularFirestore,
     public ngFireAuth: AngularFireAuth,
@@ -29,19 +45,22 @@ export class AuthenticationService {
       }
     });
   }
+
   // Login in with email/password
+
   SignIn(email, password) {
-    return this.ngFireAuth.signInWithEmailAndPassword(email, password);
+    return this.ngFireAuth.signInWithEmailAndPassword(email!, password!);
   }
   // Register user with email/password
-  RegisterUser(email, password) {
-    return this.ngFireAuth.createUserWithEmailAndPassword(email, password);
+  
+  RegisterUser(email, password,) {
+    return this.ngFireAuth.createUserWithEmailAndPassword(email!, password!);
   }
   // Email verification when new user register
   SendVerificationMail() {
     return this.ngFireAuth.currentUser.then((user) => {
       return user.sendEmailVerification().then(() => {
-        this.router.navigate(['loginscreem']);
+        this.router.navigate(['verify-email']);
       });
     });
   }
@@ -97,6 +116,10 @@ export class AuthenticationService {
       displayName: user.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
+      phoneNumber: user.phoneNumber,
+      country:user.country,
+      city: user.city,
+      sexe: user.sexe
     };
     return userRef.set(userData, {
       merge: true,
@@ -109,4 +132,51 @@ export class AuthenticationService {
       this.router.navigate(['login']);
     });
   }
+  
+
+
+
+  
+  
+  
+  
+    loginFireauth(value){
+     return new Promise<any> ( (resolve, reject)=>{
+       this.firebase.auth(App).signInWithEmailAndPassword(value.email, value.password).then(
+         res => resolve(res),
+         error => reject(error)
+       )
+     })
+    }
+  
+  
+    setUser(user: User){
+      return this.user = user;
+    }
+  
+    getUID(): string{
+      return this.user.uid;
+    }
+  
+  
+  
+    userRegistration(value){
+      return new Promise<any> ( (resolve, reject)=>{
+        this.firebase.auth().createUserWithEmailAndPassword(value.email,value.password).then(
+          res => resolve(res),
+          error => reject(error)
+        )
+      })
+    }
+  
+    // GoogleloginAuth(){
+    //   return this.googleplus.login({
+    //     'scopes':'profile email',
+                       
+    //     'webClientId':'206201421419-u1mp61vt8faleo46c8n4lm3hadsam9i7.apps.googleusercontent.com',
+    //     'offline':true
+    //   });
+    // }
+
+
 }

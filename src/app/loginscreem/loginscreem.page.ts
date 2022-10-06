@@ -16,7 +16,7 @@ export class LoginscreemPage implements OnInit {
 
   ngOnInit() {  }
   logIn(email, password) {
-    this.authService.SignIn(email.value, password.value)
+    this.authService.SignIn(email, password)
       .then((res) => {
         if(this.authService.isEmailVerified) {
           this.router.navigate(['home']);          

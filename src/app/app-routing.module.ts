@@ -33,17 +33,21 @@ const routes: Routes = [
     loadChildren: () => import('./profiles/profiles.module').then( m => m.ProfilesPageModule)
   },
   {
-    path: 'verify-email',
-    loadChildren: () => import('./verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
-  },
-  {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
   {
     path: 'password-reset',
     loadChildren: () => import('./password-reset/password-reset.module').then( m => m.PasswordResetPageModule)
+  },  {
+    path: 'verify-email',
+    loadChildren: () => import('./verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
   },
+  {
+    path: 'mesure',
+    loadChildren: () => import('./mesure/mesure.module').then( m => m.MesurePageModule)
+  },
+
 
 
 ];
