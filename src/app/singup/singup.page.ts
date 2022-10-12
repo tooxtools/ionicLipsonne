@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 
 import { AuthenticationService } from '../shared/authentication-service';
@@ -22,6 +22,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { switchMap } from 'rxjs/operators';
 
 import { User } from '../shared/user';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-singup',
@@ -48,9 +49,11 @@ export class SingupPage implements OnInit {
 
   ValidationFormUSer: FormGroup;
   loading: any;
+  errorMessage: string;
+  navCtrl: any;
 
   constructor(private router: Router, public preference: AppPreferences,
-    private navCtr: NavController, private formbuilder: FormBuilder, private authService: AuthenticationService, public loadingCtrl: LoadingController, private alertCtrl: AlertController) {
+    private navCtr: NavController, private formbuilder: FormBuilder,public auth :AngularFireAuth, private authService: AuthenticationService, public loadingCtrl: LoadingController, private alertCtrl: AlertController) {
     this.loading = this.loadingCtrl
   }
 
@@ -76,54 +79,67 @@ export class SingupPage implements OnInit {
     })
   }
 
-  registerUser(value) {
+  registerUser(value){
     this.showalert();
-    try {
-      this.authService.userRegistration(value).then(response => {
-        console.log(response);
-        if (response.user) {
-          response.user.updateProfile({
-            displayName: value.names,
-            email: value.email,
-            phoneNumber: value.phone
-
-          });
-          this.preference.store(value.phone, 'userPhoneNumber');
-          this.loading.dismiss();
-          this.router.navigate(['loginscreem']);
-        }
-      }, error => {
-        this.loading.dismiss();
-        this.errorLoading(error.message);
-
-      })
-    } catch (erro) {
-      console.log(erro)
-    }
-  }
-
-  async errorLoading(message: any) {
-    const loading = await this.alertCtrl.create({
-      header: "Error Registering",
-      message: message,
-      buttons: [{
-        text: 'ok',
-        handler: () => {
-          this.navCtr.navigateBack(['singup'])
-        }
-      }]
+     try{
+    this.authService.userRegistration(value).then( response =>{
+      console.log(response);
+      if(response.user){
+        response.user.updateProfile({
+           displayName: value.names,
+           email: value.email,
+           phoneNumber: value.phone
+          
+        });
+     this.preference.store(value.phone,'userPhoneNumber');
+      this.loading.dismiss();
+      this.router.navigate(['home']);
+      }
+    }, error=>{
+      this.loading.dismiss();
+      this.errorLoading(error.message);
+ 
     })
-    await loading.present();
-  }
+  }catch(erro){
+    console.log(erro)
+ }
+   }
+ 
+ 
+   async errorLoading(message: any){
+     const loading = await this.alertCtrl.create({
+       header:"Error Registering",
+       message:message,
+       buttons:[{
+         text:'ok',
+         handler: ()=>{
+         this.navCtr.navigateBack(['singnup'])
+       }
+       }]
+     })
+      await loading.present();
+   }
+   
+
+ 
+ 
+ 
+ 
+   async showalert(){
+  var load = await this.loadingCtrl.create({
+    message:"please wait....",
+ 
+  })
+  
+  
 
 
 
 
-  async showalert() {
-    var load = await this.loadingCtrl.create({
-      message: "please wait....",
 
-    })
-    load.present();
-  }
+   load.present();
+
+
+
+ }
 }

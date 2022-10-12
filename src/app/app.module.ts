@@ -20,7 +20,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { initializeApp } from 'firebase/app';
 
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, NgControl } from '@angular/forms';
+import { getAuth } from 'firebase/auth';
 //import { GooglePlus } from '@ionic-native/google-plus';
 const firebaseConfig = {
   apiKey: "AIzaSyAU6qVO0Us9_ofqxkuj2GEzyz2pgRLDi-I",
@@ -31,6 +32,7 @@ const firebaseConfig = {
   appId: "1:999112778830:web:bc663ad85d61e8796f0f1f"
 };
 const app = initializeApp(firebaseConfig);
+const auth = getAuth();
 
 
 @NgModule({
@@ -44,17 +46,20 @@ const app = initializeApp(firebaseConfig);
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+
     FormsModule,
     AngularFireStorageModule
 
   ],
   providers: [
     AngularFireAuth,
+    FormBuilder,
+
     AppPreferences,
     GooglePlus,
     { provide: 
     RouteReuseStrategy, useClass: IonicRouteStrategy,
-  }, NavParams, ],
+  }, NavParams],
   bootstrap: [
     AppComponent
 

@@ -16,7 +16,7 @@
       </ion-item>
       <ion-item>
         <ion-icon name="lock-closed-outline"></ion-icon>
-        <ion-input type="password" name="password" placeholder="************" [(ngModel)]="test" required>
+        <ion-input type="password" name="password" [(ngModel)]="test" placeholder="************" class="form-controll" required>
         </ion-input>
       </ion-item>
 
@@ -27,7 +27,7 @@
     </div>
 
     <div class="sign-btn-wrap">
-      <ion-button (click)="logIn(email, password)" shape="round" fill="solid">Login</ion-button>
+      <ion-button (click)=" loginUser(value)" shape="round" fill="solid">Login</ion-button>
     </div>
 
     <div style="text-align:center; margin-top: 30px;">

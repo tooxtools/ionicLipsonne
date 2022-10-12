@@ -32,6 +32,7 @@ export class AuthenticationService {
     public afStore: AngularFirestore,
     public ngFireAuth: AngularFireAuth,
     public router: Router,
+    public auth :AngularFireAuth,
     public ngZone: NgZone
   ) {
     this.ngFireAuth.authState.subscribe((user) => {
@@ -48,14 +49,20 @@ export class AuthenticationService {
 
   // Login in with email/password
 
-  SignIn(email, password) {
-    return this.ngFireAuth.signInWithEmailAndPassword(email!, password!);
-  }
+  // loginUser(value) {
+  //   return new Promise<any>((resolve, reject) => {
+  //     this.afAuth.signInWithEmailAndPassword(value.email, value.password)
+  //       .then(
+  //         res => resolve(res),
+  //         err => reject(err))
+  //   })
+  // }
+
   // Register user with email/password
   
-  RegisterUser(email, password,) {
-    return this.ngFireAuth.createUserWithEmailAndPassword(email!, password!);
-  }
+  // RegisterUser(email, password,) {
+  //   return this.ngFireAuth.createUserWithEmailAndPassword(email!, password!);
+  // }
   // Email verification when new user register
   SendVerificationMail() {
     return this.ngFireAuth.currentUser.then((user) => {
@@ -133,21 +140,7 @@ export class AuthenticationService {
     });
   }
   
-
-
-
-  
-  
-  
-  
-    loginFireauth(value){
-     return new Promise<any> ( (resolve, reject)=>{
-       this.firebase.auth(App).signInWithEmailAndPassword(value.email, value.password).then(
-         res => resolve(res),
-         error => reject(error)
-       )
-     })
-    }
+   
   
   
     setUser(user: User){
@@ -157,18 +150,58 @@ export class AuthenticationService {
     getUID(): string{
       return this.user.uid;
     }
-  
-  
-  
+
     userRegistration(value){
       return new Promise<any> ( (resolve, reject)=>{
-        this.firebase.auth().createUserWithEmailAndPassword(value.email,value.password).then(
+        this.auth.createUserWithEmailAndPassword(value.email,value.password).then(
           res => resolve(res),
           error => reject(error)
         )
       })
     }
+
+
+    signinUser(value) {
+      return new Promise<any>((resolve, reject) => {
+        this.angularFireAuth.signInWithEmailAndPassword(value.email, value.password)
+          .then(
+            res => resolve(res),
+            err => reject(err))
+      })
+    }
+
+    loginUser(value) {
+      return new Promise<any>((resolve, reject) => {
+        this.afAuth.signInWithEmailAndPassword(value.email, value.password)
+          .then(
+            res => resolve(res),
+            err => reject(err))
+      })
+    }
+
+
+
+
+    logoutUser() {
+      return new Promise<void>((resolve, reject) => {
+        if (this.afAuth.currentUser) {
+          this.afAuth.signOut()
+            .then(() => {
+              console.log("LOG Out");
+              resolve();
+            }).catch((_error: any) => {
+              reject();
+            });
+        }
+      })
+    }
   
+
+
+
+    userDetails() {
+      return this.auth.user
+    }
     // GoogleloginAuth(){
     //   return this.googleplus.login({
     //     'scopes':'profile email',
