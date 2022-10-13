@@ -5,6 +5,7 @@ import { AuthenticationService } from "../shared/authentication-service";
 import firebase from 'firebase/compat/app'
 
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { NavController } from '@ionic/angular';
 
 
 
@@ -21,12 +22,12 @@ export class ProfilePage implements OnInit {
   profileImageUrl: any;
   profileEmail: any;
 
-  constructor(private database : AngularFirestore,private authservice: AuthenticationService) {
+  constructor(private database : AngularFirestore,public navCtrl:NavController,private authService: AuthenticationService) {
     firebase.auth().onAuthStateChanged(user => {
       console.log("AUTH_USER", user);
 
       if (user) {
-        const result = this.database.doc(`/profile/${this.authservice.getUID()}`);
+        const result = this.database.doc(`/profile/${this.authService.getUID()}`);
         var userprofile = result.valueChanges();
         userprofile.subscribe(profile => {
           console.log("PROFILE::", profile);
@@ -39,7 +40,17 @@ export class ProfilePage implements OnInit {
    }
 
 
-  ngOnInit() {
+  ngOnInit() {  }
+  logout() {
+    this.authService.logoutUser()
+      .then(res => {
+        console.log(res);
+        this.navCtrl.navigateBack('/login');
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
-
 }
+
+

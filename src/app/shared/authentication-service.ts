@@ -23,8 +23,8 @@ import { initializeApp } from 'firebase/app';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  [x: string]: any;    
-  private user : User;
+
+  private user: User;
   userData: any;
   username: string;
   uid: string;
@@ -32,7 +32,7 @@ export class AuthenticationService {
     public afStore: AngularFirestore,
     public ngFireAuth: AngularFireAuth,
     public router: Router,
-    public auth :AngularFireAuth,
+    public auth: AngularFireAuth,
     public ngZone: NgZone
   ) {
     this.ngFireAuth.authState.subscribe((user) => {
@@ -59,7 +59,7 @@ export class AuthenticationService {
   // }
 
   // Register user with email/password
-  
+
   // RegisterUser(email, password,) {
   //   return this.ngFireAuth.createUserWithEmailAndPassword(email!, password!);
   // }
@@ -120,11 +120,12 @@ export class AuthenticationService {
     const userData: User = {
       uid: user.uid,
       email: user.email,
+      password: user.password,
       displayName: user.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
       phoneNumber: user.phoneNumber,
-      country:user.country,
+      country: user.country,
       city: user.city,
       sexe: user.sexe
     };
@@ -133,83 +134,83 @@ export class AuthenticationService {
     });
   }
   // Sign-out
-  SignOut() {
-    return this.ngFireAuth.signOut().then(() => {
-      localStorage.removeItem('user');
-      this.router.navigate(['login']);
-    });
+  async SignOut() {
+    await this.ngFireAuth.signOut();
+    localStorage.removeItem('user');
+    this.router.navigate(['login']);
   }
-  
-   
-  
-  
-    setUser(user: User){
-      return this.user = user;
-    }
-  
-    getUID(): string{
-      return this.user.uid;
-    }
-
-    userRegistration(value){
-      return new Promise<any> ( (resolve, reject)=>{
-        this.auth.createUserWithEmailAndPassword(value.email,value.password).then(
-          res => resolve(res),
-          error => reject(error)
-        )
-      })
-    }
 
 
-    signinUser(value) {
-      return new Promise<any>((resolve, reject) => {
-        this.angularFireAuth.signInWithEmailAndPassword(value.email, value.password)
-          .then(
+
+
+  setUser(user: User) {
+    return this.user = user;
+  }
+
+  getUID(): string {
+    return this.user.uid;
+  }
+
+  userRegistration(value) {
+    return new Promise<any>((resolve, reject) => {
+      this.auth.createUserWithEmailAndPassword(value?.email, value?.password).then(
+        res => resolve(res),
+        error => reject(error)
+      )
+    })
+  }
+
+
+  // signinUser(value) {
+  //   return new Promise<any>((resolve, reject) => {
+  //     this.angularFireAuth.signInWithEmailAndPassword(value.email, value.password)
+  //       .then(
+  //         res => resolve(res),
+  //         err => reject(err))
+  //   })
+  // }
+
+
+  loginUser(value,) {
+    return new Promise<any>((resolve, reject) => {
+        this.auth.signInWithEmailAndPassword( value?.email, value?.password)
+            .then(
             res => resolve(res),
-            err => reject(err))
-      })
-    }
-
-    loginUser(value) {
-      return new Promise<any>((resolve, reject) => {
-        this.afAuth.signInWithEmailAndPassword(value.email, value.password)
-          .then(
-            res => resolve(res),
-            err => reject(err))
-      })
-    }
+            err => reject(err));
+        });
+}
 
 
 
 
-    logoutUser() {
-      return new Promise<void>((resolve, reject) => {
-        if (this.afAuth.currentUser) {
-          this.afAuth.signOut()
-            .then(() => {
-              console.log("LOG Out");
-              resolve();
-            }).catch((_error: any) => {
-              reject();
-            });
-        }
-      })
-    }
-  
+  logoutUser() {
+    return new Promise<void>((resolve, reject) => {
+      if (this.ngFireAuth.currentUser) {
+        this.ngFireAuth.signOut()
+          .then(() => {
+            console.log("LOG Out");
+            resolve();
+          }).catch((_error: any) => {
+            reject();
+          });
+      }
+    })
+  }
 
 
 
-    userDetails() {
-      return this.auth.user
-    }
-    // GoogleloginAuth(){
-    //   return this.googleplus.login({
-    //     'scopes':'profile email',
-                       
-    //     'webClientId':'206201421419-u1mp61vt8faleo46c8n4lm3hadsam9i7.apps.googleusercontent.com',
-    //     'offline':true
-    //   });
-    // }
+
+  userDetails() {
+    return this.auth.user
+  }
+  // GoogleloginAuth(){
+  //   return this.googleplus.login({
+  //     'scopes':'profile email',
+
+  //     'webClientId':'206201421419-u1mp61vt8faleo46c8n4lm3hadsam9i7.apps.googleusercontent.com',
+  //     'offline':true
+  //   });
+  // }
 
 
 }

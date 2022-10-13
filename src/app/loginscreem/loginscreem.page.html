@@ -4,63 +4,77 @@
 
 <ion-content>
   <ion-card class="ion-no-margin">
-    <ion-img src="../../assets/images/header1.png"> </ion-img>  <ion-back-button slot="start">
-  </ion-back-button>
-  </ion-card>
-  <ion-card-content>
-    <div class="warpform">
-      <ion-item>
-        <ion-icon name="mail-outline"></ion-icon>
-        <ion-input type="text" name="email" [(ngModel)]="email" placeholder="Email" required>
-        </ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="lock-closed-outline"></ion-icon>
-        <ion-input type="password" name="password" [(ngModel)]="test" placeholder="************" class="form-controll" required>
-        </ion-input>
-      </ion-item>
-
-    </div>
-    <div class="password-forgot">
-      <ion-button fill="clear" class="ion-no-padding" [routerLink]="['/password-reset']">ForgotPassword?</ion-button>
-
-    </div>
-
-    <div class="sign-btn-wrap">
-      <ion-button (click)=" loginUser(value)" shape="round" fill="solid">Login</ion-button>
-    </div>
-
-    <div style="text-align:center; margin-top: 30px;">
-      <span class="text-tag">
-        Login Via
-      </span>
-    </div>
-    <div class="social-btns">
-      <div class="signin-btns" style="display: inline-flex;">
-        <ion-button fill="clear" shape="round" class="facebookbtn ">
-          <ion-img src="../../assets/images/facebook.png"></ion-img>
-        </ion-button>
-
-        <ion-button (click)="authService.GoogleAuth()" fill="clear" shape="round" class="google ">
-          <ion-img src="../../assets/images/google.png"></ion-img>
-        </ion-button>
-
-        <ion-button fill="clear" shape="round" class="apple ">
-          <ion-img src="../../assets/images/apple.png"></ion-img>
-        </ion-button>
-
-      </div>
-    </div>
-  </ion-card-content>
-
-  <ion-card>
-    <div class="ion-card-footer">
-      <span>Don't have an account?</span>
-      <ion-button fill="clear"  style="margin-bottom: 15px; padding-left: 2px;" href="/singup">Sign Up</ion-button>
-    </div>
+    <ion-img src="../../assets/images/header1.png"> </ion-img>
+    <ion-back-button slot="start">
+    </ion-back-button>
   </ion-card>
 
 
 
 
-</ion-content>
+  <ion-content class="bg-color">
+
+    <ion-card>
+      <form [formGroup]="ValidationFormUSer" (ngSubmit)="loginUser(ValidationFormUSer.value)">
+        <ion-card-content>
+          <ion-item>
+            <ion-input name="email" type="text" placeholder="Email" formControlName="email">
+              <ion-icon name="mail-outline"> </ion-icon>
+            </ion-input>
+          </ion-item>
+
+
+          <ng-container *ngFor="let validation of validationMessages.email">
+
+            <div class="error_message"
+              *ngIf="ValidationFormUSer.get('email').hasError(validation.type) && (ValidationFormUSer.get('email').dirty || ValidationFormUSer.get('email').touched)">
+              {{validation.message}}
+            </div>
+
+          </ng-container>
+
+
+          <ion-item>
+            <ion-input name="password" type="password" placeholder="************" formControlName="password">
+              <ion-icon name="lock-closed-outline"> </ion-icon>
+            </ion-input>
+          </ion-item>
+
+          <ng-container *ngFor="let validation of validationMessages.password">
+
+            <div class="error_message"
+              *ngIf="ValidationFormUSer.get('password').hasError(validation.type) && (ValidationFormUSer.get('password').dirty || ValidationFormUSer.get('password').touched)">
+              {{validation.message}}
+            </div>
+
+          </ng-container>
+
+
+
+          <div class="sign-btn-wrap">
+            <ion-button shape="round" type="submit" fill="solid" class="sign-btn" [disabled]="!ValidationFormUSer.valid"
+              (click)=" authService.loginUser(email,password)">Login</ion-button>
+          </div>
+
+          <div style="text-align:center; margin-top: 30px;">
+            <span class="text-tag">
+              Sign Up With
+            </span>
+          </div><br>
+          <div class="social-btns">
+            <div class="signin-btns" style="text-align:center ; ">
+              <ion-button fill="clear" class="facebookbtn ion-no-padding">
+                <ion-img src="../../assets/images/facebook.png"></ion-img>
+              </ion-button>
+
+              <ion-button fill="clear" shape="round" class="google " (click)="authService.GoogleAuth()">
+                <ion-img src="../../assets/images/google.png"></ion-img>
+              </ion-button>
+
+            </div>
+          </div>
+        </ion-card-content>
+      </form>
+
+    </ion-card>
+  </ion-content>

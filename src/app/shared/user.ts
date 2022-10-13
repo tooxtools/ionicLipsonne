@@ -1,6 +1,7 @@
 export interface User {
     uid: string;
-    email: string;
+    email: '';
+    password: '';
     displayName: string;
     photoURL: string;
     emailVerified: boolean;
