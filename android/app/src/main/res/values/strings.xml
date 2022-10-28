@@ -5,4 +5,8 @@
     <string name="package_name">io.ionic.starter</string>
     <string name="custom_url_scheme">io.ionic.starter</string>
     <string name= "server_client_id">999112778830-7df6sibj1ol5tpl24flpjjpe0pkjetts.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">794921845145166</string>
+    <string name="fb_login_protocol_scheme">fb794921845145166</string>
+    <string name="facebook_client_token"> 8d9ea129c0ddefd0bab6795f186dbad5</string>
+   
 </resources>

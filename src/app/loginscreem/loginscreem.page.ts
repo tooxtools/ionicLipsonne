@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormGroup, FormBuilder, Validators, FormControl, ReactiveFormsModule } from '@angular/forms'
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 
-import { AlertController, NavController, LoadingController } from '@ionic/angular'
+import { NavController, LoadingController } from '@ionic/angular'
 
-import { AppPreferences } from '@ionic-native/app-preferences/ngx';
+//registerWebPlugin(FacebookLogin);
 
-import { Router } from "@angular/router";
+
+import { Router } from '@angular/router';
+import { FacebookLoginPlugin } from '@capacitor-community/facebook-login';
+
 import { AuthenticationService } from "../shared/authentication-service";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-loginscreem',
@@ -19,11 +23,14 @@ export class LoginscreemPage implements OnInit {
 
   errorMessage: string = '';
   ValidationFormUSer: FormGroup;
+  fbLogin: FacebookLoginPlugin;
+  user = null;
+  token = null;
 
 
-  constructor(private router: Router,
+  constructor(private router: Router, private http: HttpClient,
     private navCtrl: NavController, private formbuilder: FormBuilder, public authService: AuthenticationService,
-    public loadingCtrl: LoadingController, public afAuth: AngularFireAuth) { }
+    public loadingCtrl: LoadingController, public afAuth: AngularFireAuth) {  }
 
   ngOnInit() {
 
@@ -53,8 +60,13 @@ export class LoginscreemPage implements OnInit {
       { type: "minlength", message: "Passwrd must be at least 5 character" }
     ]
   }
-  loginUser(value) {
-    this.authService.loginUser(value)
+  loginUser() {
+    const user = {
+      email:this.ValidationFormUSer.value.email,
+      password:this.ValidationFormUSer.value.password
+    }
+    console.log('user:'+user)
+    this.authService.loginUser(user)
       .then(res => {
         console.log(res);
         this.errorMessage = "";
@@ -67,5 +79,7 @@ export class LoginscreemPage implements OnInit {
   goToRegisterPage() {
     this.navCtrl.navigateForward('/singnup');
   }
+
+  //faceboooooooooooooooooooooooooooooooookkkkkkkkkkkkkkkkkkkkkk
 
 }

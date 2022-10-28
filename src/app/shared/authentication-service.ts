@@ -103,9 +103,9 @@ export class AuthenticationService {
     return this.ngFireAuth
       .signInWithPopup(provider)
       .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['home']);
-        });
+
+        this.router.navigate(['home']);
+
         this.SetUserData(result.user);
       })
       .catch((error) => {
@@ -171,14 +171,14 @@ export class AuthenticationService {
   // }
 
 
-  loginUser(value,) {
+  loginUser(value) {
     return new Promise<any>((resolve, reject) => {
-        this.auth.signInWithEmailAndPassword( value?.email, value?.password)
-            .then(
-            res => resolve(res),
-            err => reject(err));
-        });
-}
+      this.auth.signInWithEmailAndPassword(value?.email, value?.password)
+        .then(
+          res => resolve(res),
+          err => reject(err));
+    });
+  }
 
 
 

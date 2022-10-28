@@ -9,19 +9,18 @@
     </ion-back-button>
   </ion-card>
 
-
-
-
   <ion-content class="bg-color">
 
     <ion-card>
       <form [formGroup]="ValidationFormUSer" (ngSubmit)="loginUser(ValidationFormUSer.value)">
-        <ion-card-content>
+        <ion-card-content >
+          
           <ion-item>
             <ion-input name="email" type="text" placeholder="Email" formControlName="email">
               <ion-icon name="mail-outline"> </ion-icon>
             </ion-input>
           </ion-item>
+          
 
 
           <ng-container *ngFor="let validation of validationMessages.email">
@@ -53,7 +52,7 @@
 
           <div class="sign-btn-wrap">
             <ion-button shape="round" type="submit" fill="solid" class="sign-btn" [disabled]="!ValidationFormUSer.valid"
-              (click)=" authService.loginUser(email,password)">Login</ion-button>
+              (click)="loginUser()">Login</ion-button>
           </div>
 
           <div style="text-align:center; margin-top: 30px;">
@@ -63,7 +62,7 @@
           </div><br>
           <div class="social-btns">
             <div class="signin-btns" style="text-align:center ; ">
-              <ion-button fill="clear" class="facebookbtn ion-no-padding">
+              <ion-button (click)="signIn()" fill="clear" class="facebookbtn ion-no-padding">
                 <ion-img src="../../assets/images/facebook.png"></ion-img>
               </ion-button>
 
@@ -71,8 +70,12 @@
                 <ion-img src="../../assets/images/google.png"></ion-img>
               </ion-button>
 
+
             </div>
+            
+           
           </div>
+          
         </ion-card-content>
       </form>
 
